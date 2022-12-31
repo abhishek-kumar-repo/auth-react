@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-const Auth = () => {
+const Auth = ({setToken}) => {
   const [login, setLogin] = useState(true);
 
   const handleLogin = () => {
@@ -11,9 +11,9 @@ const Auth = () => {
   return (
     <div>
       {login ? (
-        <Login handleLogin={handleLogin} />
+        <Login handleLogin={handleLogin} setToken={setToken}/>
       ) : (
-        <Register handleLogin={handleLogin} />
+        <Register handleLogin={handleLogin} setToken={setToken} />
       )}
     </div>
   );
