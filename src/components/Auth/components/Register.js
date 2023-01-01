@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Register = ({ handleLogin, setToken }) => {
   const [user, setUser] = useState({ email: "", password: "" });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     setToken(true);
-    localStorage.setItem("token",JSON.stringify(true));
-    localStorage.setItem("user",JSON.stringify(user));
+    localStorage.setItem("token", JSON.stringify(true));
+    localStorage.setItem("user", JSON.stringify(user));
+    navigate("/dashboard");
   };
   return (
     <section className="h-screen">

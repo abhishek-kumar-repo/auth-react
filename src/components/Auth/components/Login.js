@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Login = ({ handleLogin, setToken }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({ email: "", password: "" });
   const userData = JSON.parse(localStorage.getItem("user"));
   const handleChange = (e) => {
@@ -13,8 +13,9 @@ const Login = ({ handleLogin, setToken }) => {
     if (userData.email === user.email && userData.password === user.password) {
       setToken(true);
       localStorage.setItem("token", JSON.stringify(true));
+      navigate("/dashboard")
     } else {
-      
+      console.log("Credential does't match");
     }
   };
   return (
