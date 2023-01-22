@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-const Dashboard = ({ setToken, pageNavigation }) => {
+import TodoForm from "./components/TodoForm";
+const Dashboard = ({ setToken }) => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.setItem("token", JSON.stringify(false));
@@ -8,14 +9,13 @@ const Dashboard = ({ setToken, pageNavigation }) => {
   };
   return (
     <div className="h-screen">
-      <span className="text-3xl flex justify-center items-center">
-        Dashboard
-      </span>
-      <div>
-        <button onClick={logout} className="cursor-pointer text-red-800">
+      <div className=" flex justify-between mx-2 my-2  text-red-800">
+        <span className="text-3xl ">Dashboard</span>
+        <span onClick={logout} className="cursor-pointer text-red-800">
           Logout
-        </button>
+        </span>
       </div>
+      <TodoForm />
     </div>
   );
 };
