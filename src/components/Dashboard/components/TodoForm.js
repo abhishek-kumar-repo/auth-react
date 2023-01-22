@@ -1,14 +1,15 @@
 import { useState } from "react";
 
-const TodoForm = () => {
-  const [task, setTask] = useState({ task: "" });
+const TodoForm = ({ todoList, setTodoList }) => {
+  const [taskvalue, setTaskValue] = useState("");
 
   const handleChange = (e) => {
-    setTask({ ...task, [e.target.name]: e.target.value });
+    setTaskValue(e.target.value);
   };
   const handleSumbit = (e) => {
     e.preventDefault();
-    console.log("<><>><><><><><><><", task);
+    setTodoList([...todoList, taskvalue]);
+    setTaskValue("");
   };
   return (
     <div className="flex justify-center mt-5">
@@ -17,6 +18,7 @@ const TodoForm = () => {
           onChange={handleChange}
           type="text"
           name="task"
+          value={taskvalue}
           placeholder="TodoList"
           className="form-control text-lg font-normal border border-solid border-gray-300 rounded  px-2 py-2"
         />

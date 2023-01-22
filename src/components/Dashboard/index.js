@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TodoCard from "./components/TodoCard";
 import TodoForm from "./components/TodoForm";
 const Dashboard = ({ setToken }) => {
   const navigate = useNavigate();
+  const [todoList, setTodoList] = useState([]);
   const logout = () => {
     localStorage.setItem("token", JSON.stringify(false));
     setToken(false);
     navigate("/");
   };
+
   return (
     <div className="h-screen">
       <div className=" flex justify-between mx-2 my-2  text-red-800">
@@ -15,7 +19,10 @@ const Dashboard = ({ setToken }) => {
           Logout
         </span>
       </div>
-      <TodoForm />
+      <TodoForm todoList={todoList} setTodoList={setTodoList} />
+      {todoList.map((todo, index) => (
+        <TodoCard key={index} todo={todo} />
+      ))}
     </div>
   );
 };
