@@ -10,7 +10,7 @@ const Dashboard = ({ setToken }) => {
     setToken(false);
     navigate("/");
   };
-
+  console.log("><><><", todoList);
   return (
     <div className="h-screen">
       <div className=" flex justify-between mx-2 my-2  text-red-800">
@@ -21,7 +21,13 @@ const Dashboard = ({ setToken }) => {
       </div>
       <TodoForm todoList={todoList} setTodoList={setTodoList} />
       {todoList.map((todo, index) => (
-        <TodoCard key={index} todo={todo} />
+        <TodoCard
+          key={index}
+          todo={todo}
+          index={index}
+          todoList={todoList}
+          setTodoList={setTodoList}
+        />
       ))}
     </div>
   );
